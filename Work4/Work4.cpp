@@ -2,7 +2,9 @@
 #include <vector>
 #include <iomanip>
 #include "Drinkitem.h"
+#include "OrderItem.h"
 #include "Work4.h"
+
 void AddNewDrink(std::vector<Drinkitem>& drinks)
 {
 	//Drinkitem drink1("紅茶", "大杯", 30);
@@ -45,15 +47,26 @@ void DisplayDrinkMenu(vector<Drinkitem>& drinks)
 	cout << "------------------------------------------" << endl;
 }
 
+void OrderDrink(vector<OrderItem>& order) 
+{
+
+}
+
 int main()
 {
 	vector<Drinkitem> drinks;
+	vector<OrderItem> order;
 
 	//新增飲料品項
 	AddNewDrink(drinks);
 
 	//顯示飲料菜單
 	DisplayDrinkMenu(drinks);
+
+	//點餐
+	OrderDrink(order);
+
+	//計算金額與售價
 }
 
 
