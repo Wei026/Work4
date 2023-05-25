@@ -18,5 +18,16 @@
     <ClCompile Include="Work4.cpp">
       <Filter>來源檔案</Filter>
     </ClCompile>
+    <ClCompile Include="Drinkitem.cpp">
+      <Filter>來源檔案</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Drinkitem.h">
+      <Filter>標頭檔</Filter>
+    </ClInclude>
+    <ClInclude Include="Work4.h">
+      <Filter>標頭檔</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
