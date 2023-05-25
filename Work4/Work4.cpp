@@ -48,7 +48,11 @@ void DisplayDrinkMenu(vector<Drinkitem>& drinks)
 int main()
 {
 	vector<Drinkitem> drinks;
+
+	//新增飲料品項
 	AddNewDrink(drinks);
+
+	//顯示飲料菜單
 	DisplayDrinkMenu(drinks);
 }
 
