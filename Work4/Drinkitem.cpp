@@ -1,13 +1,28 @@
 #include "Drinkitem.h"
-#include <iomanip>
+
 Drinkitem::Drinkitem(const string& name, const string& size, int price)
 {
 	drinkName = name;
-	dringSize = size;
+	drinkSize = size;
 	drinkPrice = price;
 }
 
 void Drinkitem::displayItem()
 {
-	cout << setw(10) << drinkName << setw(10) << dringSize << setw(10) << drinkPrice << endl;
+	cout << setw(10) << drinkName << setw(10) << drinkSize << setw(10) << drinkPrice << endl;
+}
+
+string Drinkitem::getName()
+{
+	return drinkName;
+}
+
+string Drinkitem::getSize()
+{
+	return drinkSize;
+}
+
+int Drinkitem::getPrice()
+{
+	return drinkPrice;
 }
