@@ -16,20 +16,59 @@ int main()
 
 	//計算金額與售價
 	CalculateSalePrice(order, drinks);
+	return 0;
 }
 
-void AddNewDrink(std::vector<Drinkitem>& drinks)
+void AddNewDrink(vector<Drinkitem>& drinks)
 {
-	//Drinkitem drink1("紅茶", "大杯", 30);
+	//DrinkItem drink1("紅茶", "大杯", 60);
 	//drinks.push_back(drink1);
-	drinks.push_back(Drinkitem("紅茶", "大杯", 30));
-	drinks.push_back(Drinkitem("紅茶", "小杯", 20));
-	drinks.push_back(Drinkitem("綠茶", "大杯", 30));
-	drinks.push_back(Drinkitem("綠茶", "小杯", 20));
-	drinks.push_back(Drinkitem("咖啡", "大杯", 50));
-	drinks.push_back(Drinkitem("咖啡", "小杯", 40));
-	drinks.push_back(Drinkitem("可樂", "大杯", 50));
-	drinks.push_back(Drinkitem("可樂", "小杯", 40));
+	//drinks.push_back(DrinkItem("紅茶", "大杯", 60));
+	//drinks.push_back(DrinkItem("紅茶", "小杯", 40));
+	//drinks.push_back(DrinkItem("綠茶", "大杯", 60));
+	//drinks.push_back(DrinkItem("綠茶", "小杯", 40));
+	//drinks.push_back(DrinkItem("咖啡", "大杯", 70));
+	//drinks.push_back(DrinkItem("咖啡", "小杯", 50));
+	//drinks.push_back(DrinkItem("可樂", "大杯", 40));
+	//drinks.push_back(DrinkItem("可樂", "小杯", 20));
+
+	string filename("drinks.csv");
+	string file_content = ReadFile(filename);
+
+	vector<string> lines = Split(file_content, '\n');
+	for (string line : lines) {
+		vector<string> fields = Split(line, ',');
+		if (fields.size() == 3) {
+			string name = fields[0];
+			string size = fields[1];
+			int price = stoi(fields[2]);
+			drinks.push_back(Drinkitem(name, size, price));
+		}
+	}
+}
+
+string ReadFile(const string& filename) {
+	auto string_content = ostringstream();
+	ifstream input_file(filename);
+	if (!input_file.is_open()) {
+		cout << "無法讀取檔案: " << filename << endl;
+		return "";
+	}
+
+	string_content << input_file.rdbuf();
+	input_file.close();
+	return string_content.str();
+}
+
+vector<string> Split(const string& string_content, char delimiter)
+{
+	vector<string> tokens;
+	string token;
+	istringstream tokenStream(string_content);
+	while (getline(tokenStream, token, delimiter)) {
+		tokens.push_back(token);
+	}
+	return tokens;
 }
 
 void DisplayDrinkMenu(vector<Drinkitem>& drinks)
@@ -137,4 +176,31 @@ void CalculateSalePrice(vector<OrderItem>& order, vector<Drinkitem>& drinks)
 	cout << messagePrice << endl;
 	cout << "售價: " << salePrice << endl;
 	cout << "----------------------------------------------------------" << endl;
+
+	PrintOrder(order, drinks, messageTackIn, messagePrice, totalPrice, salePrice);
+}
+
+void PrintOrder(vector<OrderItem>& order, vector<Drinkitem> drinks, string messageTackIn, string messagePrice, int totalPrice, int salePrice)
+{
+	string filename{ "order.txt" };
+	ofstream output_file;
+	output_file.open(filename, ios::app);
+	if (!output_file.is_open()) {
+		cout << "無法寫入檔案" << filename << endl;
+		return;
+	}
+	output_file << "----------------------------------------------------------" << endl;
+	output_file << "您所點的飲料如下:" << endl;
+	output_file << "----------------------------------------------------------" << endl;
+	for (OrderItem orderitem : order) {
+		orderitem.printOrderItem(output_file, drinks);
+	}
+	output_file << "----------------------------------------------------------" << endl;
+	output_file << "訂購方式: " << messageTackIn << endl;
+	output_file << "總金額: " << totalPrice << endl;
+	output_file << messagePrice << endl;
+	output_file << "售價: " << salePrice << endl;
+	output_file << "----------------------------------------------------------" << endl;
+
+	output_file.close();
 }
