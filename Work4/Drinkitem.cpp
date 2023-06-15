@@ -7,11 +7,6 @@ Drinkitem::Drinkitem(const string& name, const string& size, int price)
 	drinkPrice = price;
 }
 
-void Drinkitem::displayItem()
-{
-	cout << setw(10) << drinkName << setw(10) << drinkSize << setw(10) << drinkPrice << endl;
-}
-
 string Drinkitem::getName()
 {
 	return drinkName;
@@ -26,3 +21,9 @@ int Drinkitem::getPrice()
 {
 	return drinkPrice;
 }
+
+void Drinkitem::displayItem()
+{
+	cout << setw(10) << drinkName << setw(10) << drinkSize << setw(10) << drinkPrice << endl;
+}
+

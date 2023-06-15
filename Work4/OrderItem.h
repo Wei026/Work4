@@ -14,9 +14,9 @@ class OrderItem
 
 public:
 	OrderItem(int, int);
-	void displayOrderItem(vector<Drinkitem>&);
 	int getIndex();
 	int getQuantity();
+	void displayOrderItem(vector<Drinkitem>&);
 	void printOrderItem(ofstream& output_file, vector<Drinkitem>& );
 };
 

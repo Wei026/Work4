@@ -10,9 +10,9 @@ class Drinkitem
 	int drinkPrice;
 public:
 	Drinkitem(const string&, const string&, int);
-	void displayItem();
 	string getName();
 	string getSize();
 	int getPrice();
+	void displayItem();
 };
 

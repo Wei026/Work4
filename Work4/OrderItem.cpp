@@ -6,12 +6,6 @@ OrderItem::OrderItem(int index, int qty)
 	quantity = qty;
 }
 
-void OrderItem::displayOrderItem(vector<Drinkitem>& drinks)
-{
-	Drinkitem drinkitem = drinks[itemIndex - 1];
-	cout << "您所點的飲料為: " << drinkitem.getName() << "" << drinkitem.getSize() << "" << quantity << "杯，每杯" << drinkitem.getPrice() << "元，小計" << drinkitem.getPrice() * quantity << "元" << endl;
-}
-
 int OrderItem::getIndex()
 {
 	return itemIndex;
@@ -22,6 +16,11 @@ int OrderItem::getQuantity()
 	return quantity;
 }
 
+void OrderItem::displayOrderItem(vector<Drinkitem>& drinks)
+{
+	Drinkitem drinkitem = drinks[itemIndex - 1];
+	cout << "您所點的飲料為: " << drinkitem.getName() << "" << drinkitem.getSize() << "" << quantity << "杯，每杯" << drinkitem.getPrice() << "元，小計" << drinkitem.getPrice() * quantity << "元" << endl;
+}
 
 void OrderItem::printOrderItem(ofstream& output_file, vector<Drinkitem>& drinks)
 {
